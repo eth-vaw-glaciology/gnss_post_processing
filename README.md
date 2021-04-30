@@ -1,4 +1,4 @@
-# gnss_post_processing 📡 🛰️ 🏔️
+# VAW GNSS Data Post Processing 📡 🛰️ 🏔️
 Post processing of GNSS data recorded with VAW's Emlid and PPM GNSS receivers.
 
 ## Documentation:
