@@ -1,0 +1,1 @@
+This directory should contain subdirectories with the GNSS station/rover data that you converted into RINEX format.

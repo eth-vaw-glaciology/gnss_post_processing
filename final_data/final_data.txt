@@ -1,0 +1,1 @@
+This directory will contain for each station a file containing position and velocity data.

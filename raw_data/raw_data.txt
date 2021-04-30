@@ -1,0 +1,1 @@
+This directory should contain subdirectories named after your GNSS stations/rovers containing the raw data.

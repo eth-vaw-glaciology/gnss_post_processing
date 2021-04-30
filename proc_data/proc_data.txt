@@ -1,0 +1,1 @@
+This directory will contain subdirectories named after the GNSS stations/rovers that you processed with its corresponding data.
