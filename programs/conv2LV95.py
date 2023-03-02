@@ -10,11 +10,24 @@ import pandas as pd
 >>> python conv2LV95.py ../proc_data/rover01/rover1.pos
 """
 
-def read_pos(filepath):
+def find_header(filepath):
+    """ Read .pos file and find relevant header line
+    :param filepath: input filepath
+    """
+    with open(filepath, 'r') as myfile:
+        n_head = 1
+        for line in myfile.readlines():
+            if line[0:7] == "%  GPST":
+                break
+            else:
+                n_head +=1
+    return(n_head)
+
+def read_pos(filepath, n_head):
     """ Read .pos file into pandas dataframe 
     :param filepath: input filepath
     """
-    df=pd.read_csv(filepath, skiprows=24, delim_whitespace=True, parse_dates=[['%', 'GPST']])
+    df=pd.read_csv(filepath, skiprows=n_head-1, delim_whitespace=True, parse_dates=[['%', 'GPST']])# skiprows=22 for PPM, skiprows=24 for Emlid
     df.rename(columns={'%_GPST':'time'}, inplace=True)
     df.set_index('time', inplace=True)
     return(df)
@@ -57,6 +70,7 @@ def save_pos(df, filepath):
     
 if __name__=='__main__':
     filepath = sys.argv[1]
-    df = read_pos(filepath)
+    n_head = find_header(filepath)
+    df = read_pos(filepath, n_head)
     df = conv2LV95(df)
     save_pos(df, filepath)
